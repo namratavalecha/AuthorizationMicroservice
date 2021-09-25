@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authmicroservice-deployment
+  labels:
+    app: AuthMicroservicePAS
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: AuthMicroservicePAS	  
+  template:
+    metadata:
+      labels:
+        app: AuthMicroservicePAS
+    spec:
+      containers:
+      - name: authmicroserviepas
+        image: authmicroservicecr.azurecr.io/authmicroservicepas:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: authsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authmicroserviepasservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: AuthMicroservicePAS
