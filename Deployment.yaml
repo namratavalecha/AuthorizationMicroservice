@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authmicroservice-deployment
+  name: authorizationmicroservicepas-deployment
   labels:
-    app: AuthMicroservicePAS
+    app: AuthorizationMicroservicePAS
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: AuthMicroservicePAS	  
+      app: AuthorizationMicroservicePAS	  
   template:
     metadata:
       labels:
-        app: AuthMicroservicePAS
+        app: AuthorizationMicroservicePAS
     spec:
       containers:
-      - name: authmicroserviepas
+      - name: authorizationmicroservicepas
         image: policyadministrationsystem.azurecr.io/authorizationmicroservice:latest
         ports:
         - containerPort: 8080
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: authmicroserviepasservice
+  name: authorizationmicroservicepas
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: AuthMicroservicePAS
+    app: AuthorizationMicroservicePAS
