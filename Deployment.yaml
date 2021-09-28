@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: authmicroserviepas
-        image: authmicroservicecr.azurecr.io/authmicroservicepas:latest
+        image: policyadministrationsystem.azurecr.io/authorizationmicroservice:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
